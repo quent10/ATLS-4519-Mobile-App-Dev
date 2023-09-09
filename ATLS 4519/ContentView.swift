@@ -12,6 +12,7 @@ struct ContentView: View {
     @State var toggleIsOn: Bool = false
     
     var body: some View {
+        //stack vertically
         VStack{
             
             Toggle(
@@ -19,11 +20,11 @@ struct ContentView: View {
                 label: {
                     Text("Status")
                     Text(toggleIsOn ? "Online" : "Offline")
-                    
+                    //changes between online and offline
                 })
             .toggleStyle(SwitchToggleStyle(tint:Color.purple))
             Spacer()
-            
+            //make ellipes of different color
             Ellipse()
                 .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
             Ellipse()
