@@ -1,7 +1,3 @@
-//
-//  ContentView.swift
-//  Navigable App
-//
 //  Created by Quentin Wingard on 9/14/23.
 //
 
@@ -19,8 +15,8 @@ struct ContentView: View {
                 Section("Platforms") {
                     ForEach(platforms, id: \.name) { platform in
                         NavigationLink(value: platform) {
-                            Labek(platform.name, systemImage: platform.imageName)
-                                .foreground.Color(platform.color)
+                            Label(platform.name, systemImage: platform.imageName)
+                                .foregroundColor(platform.color)
                         }
                     }
                 }
@@ -28,11 +24,11 @@ struct ContentView: View {
             .navigationTitle("Welcome")
             .navigationDestination(for: Platform.self) {platform in
                 ZStack {
-                    platform.color.ignoreSafeArea()
-                    Lable(platform.name, systemImage: platform.imageName)
+                    platform.color.ignoresSafeArea()
+                    Label(platform.name, systemImage: platform.imageName)
                         .font(.largeTitle).bold()
                 }
-            }                
+            }
         }
     }
 }
