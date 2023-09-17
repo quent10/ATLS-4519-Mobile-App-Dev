@@ -1,42 +1,50 @@
 //
 //  ContentView.swift
-//  ATLS 4519
+//  Navigable App
 //
-//  Created by Quentin Wingard on 9/9/23.
+//  Created by Quentin Wingard on 9/14/23.
 //
 
 import SwiftUI
 
 struct ContentView: View {
-    
-    @State var toggleIsOn: Bool = false
-    
+   var platforms: [Platform] =  [.init(name: "Home", imageName: "house", color: .purple),
+                                 .init(name: "Navigation", imageName: "map", color: .green),
+                                 .init(name: "Alert", imageName: "bell", color: .red),
+                                 .init(name: "Model Sheet", imageName: "pc", color: .orange)]
+
     var body: some View {
-        //stack vertically
-        VStack{
-            
-            Toggle(
-                isOn: $toggleIsOn,
-                label: {
-                    Text("Status")
-                    Text(toggleIsOn ? "Online" : "Offline")
-                    //changes between online and offline
-                })
-            .toggleStyle(SwitchToggleStyle(tint:Color.purple))
-            Spacer()
-            //make ellipes of different color
-            Ellipse()
-                .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
-            Ellipse()
-                .foregroundColor(.white)
-            Ellipse()
-                .foregroundColor(.red)
-        }
-        
-    }
-    struct ContentView_Previews: PreviewProvider {
-        static var previews: some View {
-            ContentView()
+        NavigationStack {
+            List {
+                Section("Platforms") {
+                    ForEach(platforms, id: \.name) { platform in
+                        NavigationLink(value: platform) {
+                            Label(platform.name, systemImage: platform.imageName)
+                                .foregroundColor(platform.color)
+                        }
+                    }
+                }
+            }
+            .navigationTitle("Welcome")
+            .navigationDestination(for: Platform.self) {platform in
+                ZStack {
+                    platform.color.ignoresSafeArea()
+                    Label(platform.name, systemImage: platform.imageName)
+                        .font(.largeTitle).bold()
+                }
+            }
         }
     }
+}
+
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+    }
+}
+
+struct Platform: Hashable {
+    let name: String
+    let imageName: String
+    let color: Color
 }
