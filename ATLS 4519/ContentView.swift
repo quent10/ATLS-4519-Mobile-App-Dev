@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-   var platforms: [Platform] =  [.init(name: "Home", imageName: "house", color: .purple),
+   var platforms: [Platform] =  [.init(name: "Tab", imageName: "house", color: .purple),
                                  .init(name: "Navigation", imageName: "map", color: .green),
                                  .init(name: "Alert", imageName: "bell", color: .red),
                                  .init(name: "Model Sheet", imageName: "pc", color: .orange)]
