@@ -11,7 +11,7 @@ struct ContentView: View {
    var platforms: [Platform] =  [.init(name: "Tab", imageName: "house", color: .purple),
                                  .init(name: "Navigation", imageName: "map", color: .green),
                                  .init(name: "Alert", imageName: "bell", color: .red),
-                                 .init(name: "Model Sheet", imageName: "pc", color: .orange)]
+                                 .init(name: "Modal Sheet", imageName: "pc", color: .orange)]
 
     var body: some View {
         NavigationStack {
