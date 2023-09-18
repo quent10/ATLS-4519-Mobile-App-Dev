@@ -8,43 +8,61 @@
 import SwiftUI
 
 struct ContentView: View {
-   var platforms: [Platform] =  [.init(name: "Tab", imageName: "house", color: .purple),
-                                 .init(name: "Navigation", imageName: "map", color: .green),
-                                 .init(name: "Alert", imageName: "bell", color: .red),
-                                 .init(name: "Modal Sheet", imageName: "pc", color: .orange)]
-
+    @State var optionalString: String?
     var body: some View {
-        NavigationStack {
-            List {
-                Section("Platforms") {
-                    ForEach(platforms, id: \.name) { platform in
-                        NavigationLink(value: platform) {
-                            Label(platform.name, systemImage: platform.imageName)
-                                .foregroundColor(platform.color)
-                        }
-                    }
+        TabView {
+            WelcomePageView()
+                .tabItem {
+                    Label("Home", systemImage: "house")
                 }
-            }
-            .navigationTitle("Welcome")
-            .navigationDestination(for: Platform.self) {platform in
-                ZStack {
-                    platform.color.ignoresSafeArea()
-                    Label(platform.name, systemImage: platform.imageName)
-                        .font(.largeTitle).bold()
+            NavPageView()
+                .tabItem {
+                    Label("Navigation", systemImage: "map")
                 }
-            }
         }
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
+
+struct WelcomePageView: View {
+    @State private var showingAlert = false
+    @State private var counter = 0
+    @State private var showingSheet = false
+    var body: some View {
+        Text("Bonjour")
+        Button("Alert") {
+            showingAlert = true
+        }
+        .alert("Strike?", isPresented: $showingAlert) {
+            Button("Add to counter", role: .none) {
+                counter += 1
+            }
+            Button("Subtract", role: .cancel) {
+                counter -= 1
+            }
+        }
+        Button("Sheet") {
+            showingSheet = true
+        }
+        .sheet(isPresented: $showingSheet) {
+            SheetView()
+        }
     }
 }
 
-struct Platform: Hashable {
-    let name: String
-    let imageName: String
-    let color: Color
+struct NavPageView: View {
+    var body: some View {
+        Text("Navigation")
+            .foregroundColor(.red)
+    }
+}
+
+struct SheetView: View {
+    @Environment(\.dismiss) var dismiss
+    
+    var body: some View {
+        Button("Press to dismiss"){
+            dismiss()
+        }
+    }
 }
