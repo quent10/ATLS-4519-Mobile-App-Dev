@@ -13,6 +13,7 @@
 		703317BF2AAD11B500E5C80C /* ATLS_4519Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703317BE2AAD11B500E5C80C /* ATLS_4519Tests.swift */; };
 		703317C92AAD11B500E5C80C /* ATLS_4519UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703317C82AAD11B500E5C80C /* ATLS_4519UITests.swift */; };
 		703317CB2AAD11B500E5C80C /* ATLS_4519UITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703317CA2AAD11B500E5C80C /* ATLS_4519UITestsLaunchTests.swift */; };
+		704DFEE12ABBAF3F00DBF55F /* ATLAS4519App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 704DFEE02ABBAF3F00DBF55F /* ATLAS4519App.swift */; };
 		70D10EA02ABA80280077302D /* CountriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D10E9F2ABA80280077302D /* CountriesView.swift */; };
 /* End PBXBuildFile section */
 
@@ -44,6 +45,7 @@
 		703317C42AAD11B500E5C80C /* ATLS 4519UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ATLS 4519UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		703317C82AAD11B500E5C80C /* ATLS_4519UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ATLS_4519UITests.swift; sourceTree = "<group>"; };
 		703317CA2AAD11B500E5C80C /* ATLS_4519UITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ATLS_4519UITestsLaunchTests.swift; sourceTree = "<group>"; };
+		704DFEE02ABBAF3F00DBF55F /* ATLAS4519App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ATLAS4519App.swift; sourceTree = "<group>"; };
 		70D10E9F2ABA80280077302D /* CountriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -100,6 +102,7 @@
 				703317B22AAD11B500E5C80C /* ATLS_4519.entitlements */,
 				703317B32AAD11B500E5C80C /* Preview Content */,
 				70D10E9F2ABA80280077302D /* CountriesView.swift */,
+				704DFEE02ABBAF3F00DBF55F /* ATLAS4519App.swift */,
 			);
 			path = "ATLS 4519";
 			sourceTree = "<group>";
@@ -259,6 +262,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				704DFEE12ABBAF3F00DBF55F /* ATLAS4519App.swift in Sources */,
 				703317AF2AAD11B400E5C80C /* ContentView.swift in Sources */,
 				70D10EA02ABA80280077302D /* CountriesView.swift in Sources */,
 			);
