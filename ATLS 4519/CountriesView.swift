@@ -20,32 +20,47 @@ struct CountryName: Codable {
     var official: String
 }
 
+struct CountryDetailView: View {
+    var country: Country
+
+    var body: some View {
+        VStack(alignment: .leading) {
+            Text("Capital: \(country.capital?.joined(separator: ", ") ?? "N/A")")
+            Text("Population: \(country.population)")
+        }
+        .padding()
+        .navigationTitle(country.name.common)
+    }
+}
+
 struct CountriesView: View {
     @State var countries =  [Country]()
-    
+
     func getAllCountries() async -> () {
         do {
             let url = URL(string: "https://restcountries.com/v3.1/all")!
             let (data, _) = try await URLSession.shared.data(from: url)
-            print(data)
             countries = try JSONDecoder().decode([Country].self, from: data)
         } catch {
             print("Error: \(error.localizedDescription)")
         }
     }
-    
+
     var body: some View {
         NavigationView {
             List(countries) { country in
-                VStack(alignment: .leading) {
-                    Text("\(country.flag) • \(country.name.common)")
+                NavigationLink(destination: CountryDetailView(country: country)) {
+                    HStack {
+                        Text("\(country.flag)")
+                        Text(country.name.common)
+                    }
                 }
             }
             .task {
                 await getAllCountries()
             }
+            .navigationTitle("Countries")
         }
-        .navigationTitle("Countries")
     }
 }
 
