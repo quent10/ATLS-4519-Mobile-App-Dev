@@ -34,9 +34,10 @@ struct CountryDetailView: View {
 }
 
 struct CountriesView: View {
-    @State var countries =  [Country]()
+    @State private var searchText = ""
+    @State private var countries = [Country]()
 
-    func getAllCountries() async -> () {
+    func getAllCountries() async {
         do {
             let url = URL(string: "https://restcountries.com/v3.1/all")!
             let (data, _) = try await URLSession.shared.data(from: url)
@@ -48,18 +49,23 @@ struct CountriesView: View {
 
     var body: some View {
         NavigationView {
-            List(countries) { country in
-                NavigationLink(destination: CountryDetailView(country: country)) {
-                    HStack {
-                        Text("\(country.flag)")
-                        Text(country.name.common)
+            VStack {
+                SearchBar(text: $searchText)
+                    .padding()
+
+                List(countries.filter { searchText.isEmpty ? true : $0.name.common.lowercased().contains(searchText.lowercased()) }) { country in
+                    NavigationLink(destination: CountryDetailView(country: country)) {
+                        HStack {
+                            Text("\(country.flag)")
+                            Text(country.name.common)
+                        }
                     }
                 }
+                .task {
+                    await getAllCountries()
+                }
+                .navigationTitle("Countries")
             }
-            .task {
-                await getAllCountries()
-            }
-            .navigationTitle("Countries")
         }
     }
 }
@@ -67,5 +73,35 @@ struct CountriesView: View {
 struct CountriesView_Previews: PreviewProvider {
     static var previews: some View {
         CountriesView()
+    }
+}
+
+struct SearchBar: View {
+    @Binding var text: String
+
+    var body: some View {
+        HStack {
+            TextField("Search", text: $text)
+                .padding(7)
+                .background(Color(.systemGray6))
+                .cornerRadius(8)
+                .padding(.leading, 10)
+                .onTapGesture {
+                    // Handle tap if needed
+                }
+            if !text.isEmpty {
+                Button(action: {
+                    withAnimation {
+                        text = ""
+                    }
+                }) {
+                    Image(systemName: "xmark.circle.fill")
+                        .foregroundColor(Color(.systemGray3))
+                }
+                .padding(.trailing, 10)
+                .transition(.move(edge: .trailing))
+                .animation(.default)
+            }
+        }
     }
 }
