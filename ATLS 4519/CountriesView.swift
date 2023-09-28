@@ -13,6 +13,7 @@ struct Country: Codable, Identifiable {
     var capital: [String]?
     var flag: String
     var population: Int
+    var timezones: [String]?
 }
 
 struct CountryName: Codable {
@@ -27,6 +28,7 @@ struct CountryDetailView: View {
         VStack(alignment: .leading) {
             Text("Capital: \(country.capital?.joined(separator: ", ") ?? "N/A")")
             Text("Population: \(country.population)")
+            Text("Time Zones: \(country.timezones?.joined(separator: ", ") ?? "N/A")")
         }
         .padding()
         .navigationTitle(country.name.common)
