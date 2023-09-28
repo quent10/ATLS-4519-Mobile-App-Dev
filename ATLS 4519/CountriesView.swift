@@ -14,12 +14,22 @@ struct Country: Codable, Identifiable {
     var flag: String
     var population: Int
     var timezones: [String]?
-    //var currencies: [String]?
+    var currencies: Currency?
 }
 
 struct CountryName: Codable {
     var common: String
     var official: String
+}
+
+struct Currency: Codable {
+    var XPF: xpf?
+
+}
+
+struct xpf: Codable {
+    var name: String
+    var symbol: String
 }
 
 struct CountryDetailView: View {
@@ -30,7 +40,7 @@ struct CountryDetailView: View {
             Text("Capital: \(country.capital?.joined(separator: ", ") ?? "N/A")")
             Text("Population: \(country.population)")
             Text("Time Zones: \(country.timezones?.joined(separator: ", ") ?? "N/A")")
-            //Text("Currency: \(country.currencies?.joined(seperator: ", ") ?? "N/A)")
+            Text("Currency: \(country.currencies?.XPF?.name ?? "N/A")")
         }
         .padding()
         .navigationTitle(country.name.common)
