@@ -47,7 +47,7 @@ struct CountryDetailView: View {
     }
 }
 
-struct CountriesView: View {
+struct CountriesViewModel: View {
     @State private var searchText = ""
     @State private var countries = [Country]()
 
@@ -86,7 +86,7 @@ struct CountriesView: View {
 
 struct CountriesView_Previews: PreviewProvider {
     static var previews: some View {
-        CountriesView()
+        CountriesViewModel()
     }
 }
 

@@ -11,7 +11,7 @@ import SwiftUI
 struct ATLS_4519App: App {
     var body: some Scene {
         WindowGroup {
-            CountriesView()
+            CountriesViewModel()
         }
     }
 }
